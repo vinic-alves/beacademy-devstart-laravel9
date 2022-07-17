@@ -1,8 +1,8 @@
 @extends('template.users')
-@section('title', 'Visualizar Usuário')
+@section('title', $title)
 @section('body')
 
-        <h1>Listagem de Usuários</h1>
+        <h1>Usuário {{ $user->name }}</h1>
             <table class="table">
             <thead class="text-center">
                 <tr>
@@ -15,18 +15,18 @@
                 </tr>
             </thead>
             <tbody class="text-center">
-                @foreach($users as $user)
+                
                     <tr>
                     <th scope="row">{{ $user->id }}</th>
                     <td>{{ $user->name}}</td>
                     <td>{{ $user->email}}</td>
-                    <td>{{ date('d/m/Y - H:i', strtotime($user->created_at))}}</td>
+                    <td>{{ date('d/m/Y - H:i', strtotime($user->created_at)) }}</td>
                     <td> 
                         <a href="" class="btn btn-warning text-white">Editar</a>
                         <a href="" class="btn btn-danger text-white">Deletar</a>
                     </td>
                     </tr>   
-                @endforeach
+                
             </tbody>
             </table>
 
