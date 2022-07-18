@@ -41,16 +41,15 @@ class UserController extends Controller
     }
     public function store(StoreUpdateUserFormRequest $request)
     {
-       /* $user = new User;
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->password = bcrypt($request->password);
-        $user->save();
-
-        return redirect()->route('users.index');*/
+       
 
         $data = $request->all();
         $data['password'] = bcrypt($request->password);
+
+
+        $file = $request['image'];
+        $path = $file->store('profile', 'public');
+        $data['image'] = $path;
 
         $this->model->create($data);
 
@@ -65,7 +64,7 @@ class UserController extends Controller
         return view('users.edit', compact('user'));
     }
 
-    public function update(Request $request, $id)
+    public function update(StoreUpdateUserFormRequest $request, $id)
     {
         if(!$user = $this->model->find($id))
             return redirect()->route('users.index');
