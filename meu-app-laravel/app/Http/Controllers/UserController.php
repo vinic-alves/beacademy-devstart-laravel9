@@ -39,7 +39,7 @@ class UserController extends Controller
     {
         return view('users.create');
     }
-    public function store(Request $request)
+    public function store(StoreUpdateUserFormRequest $request)
     {
        /* $user = new User;
         $user->name = $request->name;
